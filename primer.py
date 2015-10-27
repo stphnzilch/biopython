@@ -2,18 +2,31 @@
 import Bio
 from Bio.Seq import Seq
 from Bio.Alphabet import IUPAC  #from biopython tutorial 3.3
+from Bio import Restriction
+from Bio.Restriction import Restriction_Dictionary
 
 name= raw_input("name sequance:  ") 
 
-raw_sequance = raw_input("enter sequance: ")         
+raw_sequance = raw_input("enter sequance: ") 
+  
 
-sequance_sites = raw_sequance  
+rwd_raw_res = raw_input("enter restriction site: ") 
+
+print rwd_raw_res 
+
+rest_enzyme = Restriction.HindIII
+
+sequance_sites = raw_sequance
+
+print "restriction site", rest_enzyme.site
 
 print "Length", len(sequance_sites)                                   
 
 frwd = sequance_sites[0:20]   
 
 print ">forward", name , #frwd_raw_res       print ">forward", name , #frwd_raw_r
+
+
 
 
 print frwd
