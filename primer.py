@@ -12,17 +12,17 @@ from Bio.Restriction import Restriction_Dictionary
 
 name = "test sequance"
 raw_sequance = "AAGGCCTTAAGGCCTTAACCGGTTATATACTTGT"
-raw_res = Restriction.HindIII
+raw_restriction = Restriction.HindIII
 
 print raw_res 
 
-rest_enzyme = raw_res
-sequance_sites = raw_sequance
+restrictiorest_enzyme = raw_res
+sequence_sites = raw_sequence
 
 print "restriction site", rest_enzyme.site
-print "Length", len(sequance_sites)                                   
+print "Length", len(sequence_sites)                                   
 
-frwd = sequance_sites[0:20]   
+frwd = sequence_sites[0:20]   
 
 print ">forward", name , #frwd_raw_res       print ">forward", name , #frwd_raw_
 
@@ -45,7 +45,7 @@ print  "melting temp", frwd_MT
 
 
 
-revs = Seq(sequance_sites[-20:])                                       #sequace for the reverse primer
+revs = Seq(sequence_sites[-20:])                                       #sequace for the reverse primer
 revs_revs_comp = revs.reverse_complement()                            #reverse complement of the last 20 characters
                                                                        #documentation same as forward
 
