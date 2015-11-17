@@ -11,15 +11,15 @@ from Bio.Restriction import Restriction_Dictionary
 #raw_res = raw_input("enter restriction site(HindIII, EcoRI): ") 
 
 name = "test sequance"
-raw_sequance = "AAGGCCTTAAGGCCTTAACCGGTTATATACTTGT"
+raw_sequence = "AAGGCCTTAAGGCCTTAACCGGTTATATACTTGT"
 raw_restriction = Restriction.HindIII
 
-print raw_res 
+print raw_restriction 
 
-restrictiorest_enzyme = raw_res
+restriction_enzyme = raw_restriction
 sequence_sites = raw_sequence
 
-print "restriction site", rest_enzyme.site
+print "restriction site", restriction_enzyme.site
 print "Length", len(sequence_sites)                                   
 
 frwd = sequence_sites[0:20]   
