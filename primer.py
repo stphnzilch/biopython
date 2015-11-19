@@ -11,7 +11,7 @@ from Bio.Restriction import Restriction_Dictionary
 #raw_res = raw_input("enter restriction site(HindIII, EcoRI): ") 
 
 name = "test sequance"
-raw_sequence = "AAGGCCTTAAGGCCTTAAAAAAACCGGTTATATACTTGT"
+raw_sequence = "AAGGCCTTAAAAAAAAGGCCTTAAAAAAACCGGTTATATACTTGT"
 raw_restriction = Restriction.HindIII
 
 print raw_restriction 
