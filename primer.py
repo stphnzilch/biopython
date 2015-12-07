@@ -1,4 +1,4 @@
-
+import sys
 import Bio
 from Bio.Seq import Seq
 from Bio.Alphabet import IUPAC  #from biopython tutorial 3.3
@@ -10,17 +10,32 @@ from Bio.Restriction import Restriction_Dictionary
 #raw_sequance = raw_input("enter sequance: ")
 #raw_res = raw_input("enter restriction site(HindIII, EcoRI): ") 
 
-name = "test sequance"
-raw_sequence = "AAGGCCTTAAAAAAAAGGCCTTAAAAAAACCGGTTATATACTTGT"
-raw_restriction = Restriction.HindIII
+import sys
+import random
+import argparse
+seq = ''
 
-print raw_restriction 
+parser = argparse.ArgumentParser()
+parser.add_argument("bases")
+args = parser.parse_args()
+with open(args.bases, 'r') as fasta:
+        for line in fasta:
+            if line.startswith(">"):
+               
+                name = (line.strip())
+            else:
+                seq += line.strip()
 
-restriction_enzyme = raw_restriction
-sequence_sites = raw_sequence
 
-print "restriction site", restriction_enzyme.site
-print "Length", len(sequence_sites)                                   
+just_restriction = Restriction.HindIII
+
+ 
+
+restriction_enzyme = just_restriction
+sequence_sites = seq
+
+print "restriction site", restriction_enzyme.site   #just the name of the input sequance
+print "Length", len(sequence_sites)                 # just the input sequancse                 
 
 frwd = sequence_sites[0:20]   
 
