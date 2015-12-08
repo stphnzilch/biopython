@@ -39,7 +39,7 @@ print "Length", len(sequence_sites)                 # just the input sequancse
 
 frwd = sequence_sites[0:20]   
 
-print ">forward", name , #frwd_raw_res       print ">forward", name , #frwd_raw_
+print  name, ", forward primer"  #frwd_raw_res       print ">forward", name , #frwd_raw_
 
 
 print frwd
@@ -64,7 +64,7 @@ revs = Seq(sequence_sites[-20:])                                       #sequace 
 revs_revs_comp = revs.reverse_complement()                            #reverse complement of the last 20 characters
                                                                        #documentation same as forward
 
-print  ">reverse", name 
+print   name, ", reverse primer"
 print revs_revs_comp
 
 revs_G = revs_revs_comp.count("G") 
