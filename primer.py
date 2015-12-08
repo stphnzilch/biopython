@@ -11,40 +11,60 @@ def linebreak():
     print "\n"
     print "----------------------------"
     print "\n"
+
+
 #GCcontent is a simple fraction that divides the amont of gs and cs and divides them by the whole length of the primer
 def GCcontent(G,C,frwd):
       G_C = 100 * float(G + C) / len(frwd)  
       print "GC content", G_C, "%"
+
+
 #meltingtemp uses a function that does syuff takes in a few variables and prints the thing
 def melttemp(G,C,A,T):
       MT = 64.9 + 41 *float( (G + C - 16.4) / (A + T + G + C))
-      print  "melting temp", MT    
+      print  "melting temp", MT
+
+    
 #countbase sets the global variable of GCTA and count them in the seq
 def countbase(seq):
       global G
-      G = seq.count("G")
       global C
-      C = seq.count("C")
       global A
-      A = seq.count("A")
       global T
+      G = seq.count("G")
+      C = seq.count("C")
+      A = seq.count("A")
       T = seq.count("T")
-#
+
+#restriction toss requires no input variables if the 
+#restriction site needs to be changed it must be done in this function.
+#first it defines the global variables
+#then it names a variable the restriction enzyme pulling in 
+#formation from a biopython dictionary
+#then the name is turned into a the sequance of bases and converted to a string
+#then the name and the seqaunce is printed.
+#the second part does the same thing but resse complements the sequance
 def restriction_toss():    
-    global forward_resriction
+    global forward_res_site
     global backward_restriction
-    just_restriction = Restriction.HindIII
-    restriction_enzyme = just_restriction
-    res_site =  Seq(restriction_enzyme.site)
-    forward_resriction = res_site
-    backward_restriction = res_site.reverse_complement()
-    print just_restriction
-    print "restriction site", restriction_enzyme.site   #just the name of the input sequance
+    global reverse_restriction_enzyme
+    global forward_restriction_enzyme
+
+    forward_res_name = Restriction.HindIII
+    forward_res_site =  Seq(forward_res_name.site)
+    print forward_res_site
+    print "restriction site", forward_res_name.site   #just the name of the input sequance
+   
+    reverse_res_name = Restriction.EcoRI
+    reverse_res_site =  Seq( reverse_res_name.site)
+    backward_restriction = reverse_res_site.reverse_complement()
+    print backward_restriction
+    print "restriction site",  reverse_res_name.site   #just the name of the input sequance
+    
 def parsing():
     global sequ
     global name
     sequ = ''
-
     parser = argparse.ArgumentParser()
     parser.add_argument("bases")
     args = parser.parse_args()
@@ -60,7 +80,7 @@ def main():
     parsing()
     restriction_toss()
     
-    sequence_sites = forward_resriction + sequ + backward_restriction
+    sequence_sites = forward_res_site + sequ + backward_restriction
 
     linebreak()
 
