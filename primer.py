@@ -26,6 +26,17 @@ def GCcontent(G,C,frwd):
 def melttemp(G,C,A,T):
       MT = 64.9 + 41 *float( (G + C - 16.4) / (A + T + G + C))
       print  "melting temp", MT    
+
+def countbase(seq):
+      global G
+      G = seq.count("G")
+      global C
+      C = seq.count("C")
+      global A
+      A = seq.count("A")
+      global T
+      T = seq.count("T")
+
 def main():
     seq = ''
 
@@ -43,57 +54,36 @@ def main():
                 
     just_restriction = Restriction.HindIII
     restriction_enzyme = just_restriction
-
     res_site =  Seq(restriction_enzyme.site)
-
-
     forward_resriction = res_site
     backward_restriction = res_site.reverse_complement()
     print just_restriction
-
     sequence_sites = forward_resriction + seq + backward_restriction
-
     print "restriction site", restriction_enzyme.site   #just the name of the input sequance
 
     linebreak()
 
     print name
     print "Length", len(sequence_sites)                 #  this section  shows the length and name of the input sequance
+
     linebreak()
 
     frwd = sequence_sites[0:20]   
-
+    seq = frwd
     print  name, ", forward primer"  #prints the forward primer and the meling point
-
-
-    print "forward", frwd
-
-    G = frwd.count("G")
-    C = frwd.count("C")
-    A = frwd.count("A")
-    T = frwd.count("T")
-
-    GCcontent(G,C,frwd)
-
+    print "forward", seq
+    countbase(seq)
+    GCcontent(G,C,seq)
     melttemp(G,C,A,T)
-
-
 
     linebreak()       #prints the sequnce an meling point and gc content
 
-
     revs = sequence_sites[-20:]                                       #sequace for the reverse primer
-    revs_revs_comp = revs.reverse_complement()                            #reverse complement of the last 20 characters
-                                                                       #documentation same as forward
-
+    seq = revs.reverse_complement()                            #reverse complement of the last 20 characters                                               
     print   name, ", reverse primer"
-    print revs_revs_comp
-
-    G = revs_revs_comp.count("G") 
-    C = revs_revs_comp.count("C")
-    A = revs_revs_comp.count("A")
-    T = revs_revs_comp.count("T")
-    GCcontent(G,C,frwd)
+    print "reverse", seq
+    countbase(seq)
+    GCcontent(G,C,seq)
     melttemp(G,C,A,T)
 
 main()        #EVERTHING!!!!!!
