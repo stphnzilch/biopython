@@ -29,14 +29,27 @@ with open(args.bases, 'r') as fasta:
 
 just_restriction = Restriction.HindIII
 
- 
-
 restriction_enzyme = just_restriction
-sequence_sites = seq
+
+res_site =  Seq(restriction_enzyme.site)
+
+
+forward_resriction = res_site
+backward_restriction = res_site.reverse_complement()
+print just_restriction
+
+sequence_sites = forward_resriction + seq + backward_restriction
 
 print "restriction site", restriction_enzyme.site   #just the name of the input sequance
-print "Length", len(sequence_sites)                 # just the input sequancse                 
+print "  "
+print "--------------------------------------------------"
+print "  "
 
+print name
+print "Length", len(sequence_sites)                 # just the input sequancse                 
+print "  "
+print "--------------------------------------------------"
+print "  "
 frwd = sequence_sites[0:20]   
 
 print  name, ", forward primer"  #frwd_raw_res       print ">forward", name , #frwd_raw_
@@ -58,9 +71,14 @@ frwd_MT = 64.9 + 41 *float( (frwd_G + frwd_C - 16.4) / (frwd_A + frwd_T + frwd_G
 
 print  "melting temp", frwd_MT  
 
+print "  "
+print "----------------------------------------------------"
+   
+
+print"  "
 
 
-revs = Seq(sequence_sites[-20:])                                       #sequace for the reverse primer
+revs = sequence_sites[-20:]                                       #sequace for the reverse primer
 revs_revs_comp = revs.reverse_complement()                            #reverse complement of the last 20 characters
                                                                        #documentation same as forward
 
