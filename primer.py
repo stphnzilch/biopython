@@ -40,9 +40,9 @@ def restriction_toss():
     backward_restriction = res_site.reverse_complement()
     print just_restriction
     print "restriction site", restriction_enzyme.site   #just the name of the input sequance
-    
-
-def main():
+def parsing():
+    global sequ
+    global name
     sequ = ''
 
     parser = argparse.ArgumentParser()
@@ -56,6 +56,8 @@ def main():
             else:
                 sequ += line.strip()
 
+def main():
+    parsing()
     restriction_toss()
     
     sequence_sites = forward_resriction + sequ + backward_restriction
