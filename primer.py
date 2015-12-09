@@ -5,6 +5,7 @@ from Bio.Alphabet import IUPAC  #from biopython tutorial 3.3
 from Bio import Restriction
 from Bio.Restriction import Restriction_Dictionary
 import argparse
+import primerlibrary
 
 #linebreak prints a an empty line and a dotted line
 def linebreak():
@@ -52,18 +53,22 @@ def restriction_toss():
 
     forward_res_name = Restriction.HindIII
     forward_res_site =  Seq(forward_res_name.site)
-    print forward_res_site
-    print "restriction site", forward_res_name.site   #just the name of the input sequance
+    print forward_res_name
+    print "restriction site", forward_res_name.site   
    
     reverse_res_name = Restriction.EcoRI
     reverse_res_site =  Seq( reverse_res_name.site)
     backward_restriction = reverse_res_site.reverse_complement()
-    print backward_restriction
-    print "restriction site",  reverse_res_name.site   #just the name of the input sequance
-    
+    print reverse_res_name
+    print "restriction site",  reverse_res_name.site   
+#divides the data coming in
+#if the line stars with a > then its a titile
+#then everything else is a base sequance
+#store variable name and sequ
 def parsing():
     global sequ
     global name
+    global parser
     sequ = ''
     parser = argparse.ArgumentParser()
     parser.add_argument("bases")
@@ -76,35 +81,41 @@ def parsing():
             else:
                 sequ += line.strip()
 
+#adds the restriction sites to the original sequance
+def seq_adding():
+    global sequence_sites
+    sequence_sites = forward_res_site + sequ + backward_restriction
+
+
+
 def main():
     parsing()
-    restriction_toss()
-    
-    sequence_sites = forward_res_site + sequ + backward_restriction
+    restriction_toss()    
+    seq_adding()
 
     linebreak()
 
     print name
-    print "Length", len(sequence_sites)                 #  this section  shows the length and name of the input sequance
+    print "Length", len(sequence_sites)
 
     linebreak()
 
     frwd = sequence_sites[0:20]   
     seq = frwd
-    print  name, ", forward primer"  #prints the forward primer and the meling point
+    print  name, ", forward primer"  
     print "forward", seq
     countbase(seq)
     GCcontent(G,C,seq)
     melttemp(G,C,A,T)
 
-    linebreak()       #prints the sequnce an meling point and gc content
+    linebreak()      
 
-    revs = sequence_sites[-20:]                                       #sequace for the reverse primer
-    seq = revs.reverse_complement()                            #reverse complement of the last 20 characters                                               
+    revs = sequence_sites[-20:] #sequace for the reverse primer
+    seq = revs.reverse_complement()#reverse complement of the last 20 characters                                         
     print   name, ", reverse primer"
     print "reverse", seq
     countbase(seq)
     GCcontent(G,C,seq)
     melttemp(G,C,A,T)
 
-main()        #EVERTHING!!!!!!
+main()        #EVERYTHING!!!!!!
