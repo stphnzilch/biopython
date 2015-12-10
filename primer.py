@@ -15,8 +15,8 @@ def linebreak():
 
 
 #GCcontent is a simple fraction that divides the amont of gs and cs and divides them by the whole length of the primer
-def GCcontent(G,C,frwd):
-      G_C = 100 * float(G + C) / len(frwd)  
+def GCcontent(G,C,seq):
+      G_C = 100 * float(G + C) / len(seq)  
       print "GC content", G_C, "%"
 
 
